@@ -64,3 +64,31 @@
     <script src="script.js"></script>
 </body>
 </html>
+<h2>Create Account</h2>
+
+<input type="email" id="email" placeholder="Email" />
+<input type="password" id="password" placeholder="Password" />
+<input type="text" id="prisonerId" placeholder="Prisoner ID (Optional)" />
+
+<button onclick="signUp()">Sign Up</button>
+<button onclick="login()">Login</button>
+
+<hr>
+
+<a href="#" onclick="showJobs()">Find Jobs</a>
+<a href="#" onclick="showShelters()">Find Shelters</a>
+
+<div id="jobsList" style="display:none;">
+  <h3>Second Chance Jobs</h3>
+  <p>Warehouse, Construction, Cleaning, etc.</p>
+</div>
+
+<div id="sheltersList" style="display:none;">
+  <h3>Shelters</h3>
+  <p>NYC shelters and transitional housing</p>
+</div>
+
+<div id="interviewSection" style="display:none;">
+  <h3>Interview Unlocked 🎉</h3>
+  <button onclick="requestInterview()">Request Interview</button>
+</div>
