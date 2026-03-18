@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reentry Progress Tracker</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 25px;
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #28a745;
+      transition: 0.4s;
+    }
+
+    .points {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #007BFF;
+      color: white;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .locked {
+      background: gray;
+      cursor: not-allowed;
+    }
+
+    .unlock-message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Skill Progress Tracker</h1>
+  <p>Earn points to unlock a free job interview</p>
+
+  <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <div class="points">
+    Points: <span id="points">0</span> / 100
+  </div>
+
+  <!-- Buttons to simulate earning points -->
+  <button onclick="addPoints(10)">Complete Lesson (+10)</button>
+  <button onclick="addPoints(20)">Finish Training (+20)</button>
+  <button onclick="addPoints(30)">Pass Quiz (+30)</button>
+
+  <br><br>
+
+  <button id="unlockBtn" class="locked" disabled>
+    🔒 Unlock Free Job Interview
+  </button>
+
+  <div id="message" class="unlock-message"></div>
+</div>
+
+<script>
+  let points = 0;
+  const maxPoints = 100;
+
+  function addPoints(amount) {
+    points += amount;
+    if (points > maxPoints) points = maxPoints;
+
+    document.getElementById("points").textContent = points;
+
+    let percent = (points / maxPoints) * 100;
+    document.getElementById("progress").style.width = percent + "%";
+
+    checkUnlock();
+  }
+
+  function checkUnlock() {
+    const button = document.getElementById("unlockBtn");
+    const message = document.getElementById("message");
+
+    if (points >= maxPoints) {
+      button.disabled = false;
+      button.classList.remove("locked");
+      button.textContent = "🎉 Claim Free Job Interview";
+
+      button.onclick = () => {
+        message.textContent = "Success! Your interview request has been unlocked.";
+      };
+    }
+  }
+</script>
+
+</body>
+</html>
