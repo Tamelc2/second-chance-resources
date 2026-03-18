@@ -1,2 +1,142 @@
 <h1>Jobs</h1>
 <p>List of second chance employers</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Second Chance Jobs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      background: black;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .jobs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .job-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .job-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .category {
+      font-size: 12px;
+      color: gray;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Second Chance Career Paths</h1>
+
+<div class="filter-buttons">
+  <button onclick="filterJobs('all')">All</button>
+  <button onclick="filterJobs('Skilled')">Skilled</button>
+  <button onclick="filterJobs('Transportation')">Transportation</button>
+  <button onclick="filterJobs('Food')">Food</button>
+  <button onclick="filterJobs('Maintenance')">Maintenance</button>
+  <button onclick="filterJobs('Tech')">Tech</button>
+  <button onclick="filterJobs('Community')">Community</button>
+</div>
+
+<div class="jobs-container" id="jobsContainer"></div>
+
+<script>
+  const jobs = [
+    { title: "Construction Worker", category: "Skilled" },
+    { title: "Electrician Apprentice", category: "Skilled" },
+    { title: "Plumber Apprentice", category: "Skilled" },
+    { title: "HVAC Technician", category: "Skilled" },
+    { title: "Welder", category: "Skilled" },
+
+    { title: "Warehouse Worker", category: "Transportation" },
+    { title: "Delivery Driver", category: "Transportation" },
+    { title: "Forklift Operator", category: "Transportation" },
+    { title: "Mover", category: "Transportation" },
+
+    { title: "Line Cook", category: "Food" },
+    { title: "Prep Cook", category: "Food" },
+    { title: "Dishwasher", category: "Food" },
+    { title: "Catering Assistant", category: "Food" },
+
+    { title: "Janitor", category: "Maintenance" },
+    { title: "Housekeeper", category: "Maintenance" },
+    { title: "Maintenance Worker", category: "Maintenance" },
+
+    { title: "Data Entry Clerk", category: "Tech" },
+    { title: "Customer Support Rep", category: "Tech" },
+    { title: "Junior Web Developer", category: "Tech" },
+
+    { title: "Peer Support Specialist", category: "Community" },
+    { title: "Youth Mentor", category: "Community" },
+    { title: "Reentry Program Assistant", category: "Community" }
+  ];
+
+  const container = document.getElementById("jobsContainer");
+
+  function displayJobs(jobList) {
+    container.innerHTML = "";
+    jobList.forEach(job => {
+      const card = document.createElement("div");
+      card.className = "job-card";
+
+      card.innerHTML = `
+        <div class="job-title">${job.title}</div>
+        <div class="category">${job.category}</div>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  function filterJobs(category) {
+    if (category === "all") {
+      displayJobs(jobs);
+    } else {
+      const filtered = jobs.filter(job => job.category === category);
+      displayJobs(filtered);
+    }
+  }
+
+  // Load all jobs initially
+  displayJobs(jobs);
+</script>
+
+</body>
+</html>
