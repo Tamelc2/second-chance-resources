@@ -4,11 +4,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Second Chance Jobs</title>
+  <title>Reentry-Friendly Jobs</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #f5f7fa;
       margin: 0;
       padding: 20px;
     }
@@ -17,126 +17,151 @@
       text-align: center;
     }
 
-    .filter-buttons {
-      text-align: center;
-      margin-bottom: 20px;
+    .container {
+      max-width: 1000px;
+      margin: auto;
     }
 
-    button {
-      margin: 5px;
-      padding: 10px 15px;
-      border: none;
-      background: black;
+    .category {
+      margin-top: 30px;
+    }
+
+    .category h2 {
+      background: #222;
       color: white;
-      cursor: pointer;
-      border-radius: 5px;
+      padding: 10px;
+      border-radius: 8px;
     }
 
-    button:hover {
-      background: #333;
-    }
-
-    .jobs-container {
+    .jobs {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
+      margin-top: 15px;
     }
 
     .job-card {
       background: white;
       padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: 0.2s;
     }
 
-    .job-title {
-      font-weight: bold;
-      font-size: 18px;
+    .job-card:hover {
+      transform: scale(1.05);
     }
 
-    .category {
-      font-size: 12px;
-      color: gray;
-      margin-top: 5px;
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
 
-<h1>Second Chance Career Paths</h1>
+  <div class="container">
+    <h1>Second Chance Career Paths</h1>
+    <p style="text-align:center;">
+      Jobs that are often open to individuals rebuilding their lives.
+    </p>
 
-<div class="filter-buttons">
-  <button onclick="filterJobs('all')">All</button>
-  <button onclick="filterJobs('Skilled')">Skilled</button>
-  <button onclick="filterJobs('Transportation')">Transportation</button>
-  <button onclick="filterJobs('Food')">Food</button>
-  <button onclick="filterJobs('Maintenance')">Maintenance</button>
-  <button onclick="filterJobs('Tech')">Tech</button>
-  <button onclick="filterJobs('Community')">Community</button>
-</div>
+    <input type="text" id="search" class="search-box" placeholder="Search jobs...">
 
-<div class="jobs-container" id="jobsContainer"></div>
+    <!-- Skilled Jobs -->
+    <div class="category">
+      <h2>🔧 Skilled Trades</h2>
+      <div class="jobs">
+        <div class="job-card">Construction Worker</div>
+        <div class="job-card">Electrician Apprentice</div>
+        <div class="job-card">Plumber Apprentice</div>
+        <div class="job-card">HVAC Technician</div>
+        <div class="job-card">Welder</div>
+        <div class="job-card">Auto Mechanic</div>
+      </div>
+    </div>
 
-<script>
-  const jobs = [
-    { title: "Construction Worker", category: "Skilled" },
-    { title: "Electrician Apprentice", category: "Skilled" },
-    { title: "Plumber Apprentice", category: "Skilled" },
-    { title: "HVAC Technician", category: "Skilled" },
-    { title: "Welder", category: "Skilled" },
+    <!-- Transportation -->
+    <div class="category">
+      <h2>🚚 Transportation & Warehouse</h2>
+      <div class="jobs">
+        <div class="job-card">Warehouse Worker</div>
+        <div class="job-card">Delivery Driver</div>
+        <div class="job-card">Forklift Operator</div>
+        <div class="job-card">Package Sorter</div>
+        <div class="job-card">Mover</div>
+      </div>
+    </div>
 
-    { title: "Warehouse Worker", category: "Transportation" },
-    { title: "Delivery Driver", category: "Transportation" },
-    { title: "Forklift Operator", category: "Transportation" },
-    { title: "Mover", category: "Transportation" },
+    <!-- Food Service -->
+    <div class="category">
+      <h2>🍽️ Food Service</h2>
+      <div class="jobs">
+        <div class="job-card">Line Cook</div>
+        <div class="job-card">Prep Cook</div>
+        <div class="job-card">Dishwasher</div>
+        <div class="job-card">Catering Assistant</div>
+        <div class="job-card">Food Truck Worker</div>
+      </div>
+    </div>
 
-    { title: "Line Cook", category: "Food" },
-    { title: "Prep Cook", category: "Food" },
-    { title: "Dishwasher", category: "Food" },
-    { title: "Catering Assistant", category: "Food" },
+    <!-- Maintenance -->
+    <div class="category">
+      <h2>🧹 Cleaning & Maintenance</h2>
+      <div class="jobs">
+        <div class="job-card">Janitor</div>
+        <div class="job-card">Housekeeper</div>
+        <div class="job-card">Maintenance Worker</div>
+        <div class="job-card">Property Cleanup</div>
+      </div>
+    </div>
 
-    { title: "Janitor", category: "Maintenance" },
-    { title: "Housekeeper", category: "Maintenance" },
-    { title: "Maintenance Worker", category: "Maintenance" },
+    <!-- Tech -->
+    <div class="category">
+      <h2>💻 Entry-Level Tech</h2>
+      <div class="jobs">
+        <div class="job-card">Data Entry Clerk</div>
+        <div class="job-card">Customer Support</div>
+        <div class="job-card">Junior Web Developer</div>
+        <div class="job-card">IT Support</div>
+      </div>
+    </div>
 
-    { title: "Data Entry Clerk", category: "Tech" },
-    { title: "Customer Support Rep", category: "Tech" },
-    { title: "Junior Web Developer", category: "Tech" },
+    <!-- Community -->
+    <div class="category">
+      <h2>🧑‍🤝‍🧑 Community Roles</h2>
+      <div class="jobs">
+        <div class="job-card">Peer Support Specialist</div>
+        <div class="job-card">Youth Mentor</div>
+        <div class="job-card">Outreach Worker</div>
+        <div class="job-card">Reentry Program Assistant</div>
+      </div>
+    </div>
 
-    { title: "Peer Support Specialist", category: "Community" },
-    { title: "Youth Mentor", category: "Community" },
-    { title: "Reentry Program Assistant", category: "Community" }
-  ];
+  </div>
 
-  const container = document.getElementById("jobsContainer");
+  <script>
+    const searchInput = document.getElementById("search");
+    const jobs = document.querySelectorAll(".job-card");
 
-  function displayJobs(jobList) {
-    container.innerHTML = "";
-    jobList.forEach(job => {
-      const card = document.createElement("div");
-      card.className = "job-card";
+    searchInput.addEventListener("keyup", function() {
+      let filter = searchInput.value.toLowerCase();
 
-      card.innerHTML = `
-        <div class="job-title">${job.title}</div>
-        <div class="category">${job.category}</div>
-      `;
-
-      container.appendChild(card);
+      jobs.forEach(job => {
+        let text = job.textContent.toLowerCase();
+        job.style.display = text.includes(filter) ? "block" : "none";
+      });
     });
-  }
-
-  function filterJobs(category) {
-    if (category === "all") {
-      displayJobs(jobs);
-    } else {
-      const filtered = jobs.filter(job => job.category === category);
-      displayJobs(filtered);
-    }
-  }
-
-  // Load all jobs initially
-  displayJobs(jobs);
-</script>
+  </script>
 
 </body>
 </html>
+      
+      
+
+   
+  
+ 
