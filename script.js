@@ -59,3 +59,37 @@ async function login() {
     alert("Logged in!");
     checkInterviewEligibility();
   }
+function showJobs() {
+  document.getElementById("jobsList").style.display = "block";
+  document.getElementById("sheltersList").style.display = "none";
+}
+async function checkInterviewEligibility() {
+  const user = (await supabase.auth.getUser()).data.user;
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("skill_points")
+    .eq("id", user.id)
+    .single();
+
+  if (profile.skill_points >= 300) {
+    document.getElementById("interviewSection").style.display = "block";
+  }
+}
+
+async function requestInterview() {
+  const user = (await supabase.auth.getUser()).data.user;
+
+  await supabase.from("interviews").insert([
+    {
+      user_id: user.id,
+      status: "pending"
+    }
+  ]);
+
+  alert("Interview requested!");
+}
+
+function showShelters() {
+  document.getElementById("sheltersList").style.display = "block";
+  document.getElementById("jobsList").style.display = "none
